@@ -172,6 +172,11 @@ $rawOutput
     void addTypesFrom(analyzer.DartType type) {
       // Prevent infinite recursion.
       if (seenTypes.contains(type)) {
+        if (type.alias != null) {
+          // If we've seen this type before, but it has a type alias, we havent
+          // visited the type alias yet, so do that now.
+          type.alias!.element.accept(typeVisitor);
+        }
         return;
       }
       seenTypes.add(type);
@@ -179,6 +184,7 @@ $rawOutput
         if (type.element?.library != null) type.element!.library!,
         if (type.alias?.element.library != null) type.alias!.element.library,
       ]);
+
       type.element?.accept(typeVisitor);
       type.alias?.element.accept(typeVisitor);
       switch (type) {
