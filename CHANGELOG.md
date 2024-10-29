@@ -1,3 +1,18 @@
+## 5.4.5-wip
+
+* Ignore "must_be_immutable" warning in generated files. Mocks cannot be made
+  immutable anyway, but this way users aren't prevented from using generated
+  mocks altogether.
+* Require Dart >= 3.3.0.
+* Require analyzer 6.4.1.
+* Add support for extension types.
+* Require dart_style >= 2.3.7, so that the current Dart language version can be
+  passed to `DartFormatter`.
+* Add topics to `pubspec.yaml`.
+* Fix a bug where typedef-aliases in type arguments were not correctly
+  resolved.
+* Fix a bug where record types were not correctly resolved.
+
 ## 5.4.4
 
 * Use `posix` style for local imports.
